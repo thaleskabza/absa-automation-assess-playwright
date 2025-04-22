@@ -7,7 +7,7 @@
     "Install_Dependencies":"npm install",
     "Install_Playwright_Browsers":"npx playwright install",
     "Test_UI": "npx cucumber-js",
-    "Test_ALL_API": "jest --config=jest.config.js",
+    "Test_ALL_API": "npx jest API_Tests/__tests__/*.test.js",
     "Test_API_Real": "npx jest API_Tests/__tests__/petfinder.real.test.js",
     "Test_API_Mocked": "npx jest API_Tests/__tests__/petfinder.mock.test.js",
     "Test_API_K6":"k6 run API_Performances_Tests/k6/petfinder_performance.js"

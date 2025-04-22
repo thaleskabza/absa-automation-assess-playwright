@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Run API tests
-        run: jest --config=jest.config.js
+        run: npx jest API_Tests/__tests__/petfinder.real.test.js
       - name: Debug - List files in test-results
         run: ls -R ./test-results
       - name: Upload API Test Report
