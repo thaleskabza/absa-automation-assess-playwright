@@ -4,8 +4,8 @@ const qs = require('querystring');
 
 describe('Petfinder API — Real', () => {
   // ← Replace these placeholders with your actual credentials:
-  const CLIENT_ID     = 'gbfuckDsPVmzzxskuQpgdeQ5tvZYX6NTa9vFszNJLkg8oTeQOK';
-  const CLIENT_SECRET = 'Y0E5cR6pNrzJinSZuvFlSVDws5NZINH4OdkJtK0d';
+  const CLIENT_ID     = '1yIxd8HkNjV4ymqLi2GhaFFYOps9SrpEeT0cUWSSWwDAVHKxeF';
+  const CLIENT_SECRET = 'kih7OW7Q3yGiVK4i7Y33hEwsS24eEWRyiN6gaNMt';
 
   let token = '';
 

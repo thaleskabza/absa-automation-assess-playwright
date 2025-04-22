@@ -1,7 +1,7 @@
 const axios = require('axios');
 const MockAdapter = require('axios-mock-adapter');
 
-// Mock data
+
 const mockAnimalsResponse = {
   animals: [
     {
