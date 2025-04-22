@@ -25,7 +25,7 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
-        run: npx cucumber-js && node generateReport.js
+        run: npx cucumber-js
       - name: Debug - List files in test-results
         run: ls -R ./test-results
       - name: Upload Playwright Test Report
