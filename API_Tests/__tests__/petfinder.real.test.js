@@ -1,9 +1,9 @@
-// __tests__/petfinder.real.test.js
+
 const axios = require('axios');
 const qs = require('querystring');
 
 describe('Petfinder API — Real', () => {
-  // ← Replace these placeholders with your actual credentials:
+
   const CLIENT_ID     = '1yIxd8HkNjV4ymqLi2GhaFFYOps9SrpEeT0cUWSSWwDAVHKxeF';
   const CLIENT_SECRET = 'kih7OW7Q3yGiVK4i7Y33hEwsS24eEWRyiN6gaNMt';
 
