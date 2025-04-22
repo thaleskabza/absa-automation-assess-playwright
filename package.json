@@ -1,0 +1,51 @@
+{
+  "name": "absa-assessment-playwright-javascript",
+  "version": "1.0.0",
+  "description": "This is front-end and back-end automation testing using JavaScript. We will be using Playwrighht and Cucumber for Front-end Automation. We will be using  Jest as a API testing and axios for the http request.",
+  "main": "index.js",
+  "scripts": {
+    "Install_Dependencies":"npm install",
+    "Install_Playwright_Browsers":"npx playwright install",
+    "Test_UI": "npx cucumber-js",
+    "Test_ALL_API": "jest --config=jest.config.js",
+    "Test_API_Real": "npx jest API_Tests/__tests__/petfinder.real.test.js",
+    "Test_API_Mocked": "npx jest API_Tests/__tests__/petfinder.mock.test.js",
+    "Test_API_K6":"k6 run API_Performances_Tests/k6/petfinder_performance.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skywalkerkabza/absa-assessment-playwright-javascript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skywalkerkabza/absa-assessment-playwright-javascript/issues"
+  },
+  "homepage": "https://github.com/skywalkerkabza/absa-assessment-playwright-javascript#readme",
+  "dependencies": {
+    "@cucumber/cucumber": "^11.2.0",
+    "@cucumber/pretty-formatter": "^1.0.1",
+    "ajv": "^8.17.1",
+    "csv-parse": "^5.6.0",
+    "k6": "^0.0.0",
+    "playwright": "^1.50.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.50.1",
+    "@types/node": "^22.13.9",
+    "axios": "^1.8.4",
+    "axios-mock-adapter": "^2.1.0",
+    "cucumber-html-reporter": "^6.0.0",
+    "jest": "^29.7.0",
+    "jest-html-reporter": "^4.1.0",
+    "jest-junit": "^16.0.0",
+    "k6-html-reporter": "^1.0.5"
+  },
+  "directories": {
+    "testAPI": "API_tests",
+    "testUI": "UI_tests",
+    "testK6": "k6_api_performance"
+  },
+  "type": "commonjs"
+}

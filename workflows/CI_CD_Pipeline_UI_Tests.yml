@@ -1,0 +1,37 @@
+name: UI Tests using Git Pipelines
+on:
+  schedule:
+    - cron: '30 6 * * *'
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - name: Set timestamp
+        run: echo "TIMESTAMP=$(date +'%Y-%m-%d_%H-%M-%S')"  >> $GITHUB_ENV
+      - name: Create test-results directories
+        run: |
+          mkdir -p ./test-results/ui-test-results
+      - name: Install dependencies
+        run: npm install
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        run: npx cucumber-js && node generateReport.js
+      - name: Debug - List files in test-results
+        run: ls -R ./test-results
+      - name: Upload Playwright Test Report
+        uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-test-report-${TIMESTAMP}
+          path: ./test-results/ui-test-results
+          retention-days: 30

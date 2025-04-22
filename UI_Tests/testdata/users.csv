@@ -1,0 +1,7 @@
+FirstName,LastName,Username,Password,Company,Role,Email,CellPhone
+FName1,LName1,User1,Pass1,Company AAA,Admin,admin@mail.com,082555
+FName2,LName2,User2,Pass2,Company BBB,Customer,customer@mail.com,083444
+FName3,LName3,User3,Pass3,Company CCC,User,user3@mail.com,084333
+FName4,LName4,User4,Pass4,Company DDD,Analyst,analyst@mail.com,085222
+FName5,LName5,User5,Pass5,Company EEE,Support,support@mail.com,086111
+FName6,LName6,User6,Pass6,Company FFF,Developer,dev@mail.com,087000

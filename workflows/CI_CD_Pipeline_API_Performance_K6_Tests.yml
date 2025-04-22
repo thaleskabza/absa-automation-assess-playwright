@@ -1,0 +1,43 @@
+name: K6 Load Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  run-k6-load-tests:
+    name: Run k6 load tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install prerequisites
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gnupg2 software-properties-common
+
+      - name: Add k6 APT repository
+        run: |
+          wget -q -O - https://dl.k6.io/key.gpg | sudo apt-key add -
+          echo "deb https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+
+      - name: Install k6
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y k6
+
+      - name: Create results directory
+        run: mkdir -p load-test-results
+
+      - name: Run k6 script
+        run: k6 run API_Performances_Tests/k6/petfinder_performance.js
+
+      - name: Upload summary JSON
+        uses: actions/upload-artifact@v4
+        with:
+          name: k6-summary
+          path: load-test-results/summary.json
