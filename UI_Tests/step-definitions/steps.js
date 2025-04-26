@@ -36,14 +36,141 @@ Before({ tags: '@webtables' }, async function (scenario) {
   // 2) Ensure the root container is visible
   await this.page.locator('thead tr.smart-table-header-row th span.header-content').waitFor({ state: 'visible', timeout: 5000 });
 
-  // 3) Capture & compare against baseline
-  const baselineDir = path.join('tests', 'smoke-snapshots');
-  if (!fs.existsSync(baselineDir)) fs.mkdirSync(baselineDir, { recursive: true });
-  const snapName = 'webtables-smoke.png';
-
-  const buffer = await this.page.screenshot({ fullPage: true });
-  await expect(buffer)
-    .toMatchSnapshot(path.join(baselineDir, snapName), { maxDiffPixelRatio: 0.01 });
+  await expect(page.locator('body')).toMatchAriaSnapshot(`
+  - document:
+    - table:
+      - rowgroup:
+        - row:
+          - cell:
+            - textbox "Search"
+        - row "Add User":
+          - cell "Add User":
+            - button "Add User"
+        - row "First Name Last Name User Name Customer Role E-mail Cell Phone Locked":
+          - cell "First Name"
+          - cell "Last Name"
+          - cell "User Name"
+          - cell "Customer"
+          - cell "Role"
+          - cell "E-mail"
+          - cell "Cell Phone"
+          - cell "Locked"
+          - cell
+          - cell
+      - rowgroup:
+        - row "Tom Blue matt Company BBB Customer matt@comp.com 111222333 Edit":
+          - cell "Tom"
+          - cell "Blue"
+          - cell "matt"
+          - cell "Company BBB"
+          - cell "Customer"
+          - cell "matt@comp.com"
+          - cell "111222333"
+          - cell:
+            - checkbox [checked] [disabled]
+          - cell "Edit":
+            - button "Edit"
+          - cell:
+            - button
+        - row "sale sale sale Sales Team sales@comp.com 777111223 Edit":
+          - cell "sale"
+          - cell "sale"
+          - cell "sale"
+          - cell
+          - cell "Sales Team"
+          - cell "sales@comp.com"
+          - cell "777111223"
+          - cell:
+            - checkbox [disabled]
+          - cell "Edit":
+            - button "Edit"
+          - cell:
+            - button
+        - row "Mark Novak novak Company AAA Customer asa@asd.cz 777888444 Edit":
+          - cell "Mark"
+          - cell "Novak"
+          - cell "novak"
+          - cell "Company AAA"
+          - cell "Customer"
+          - cell "asa@asd.cz"
+          - cell "777888444"
+          - cell:
+            - checkbox [disabled]
+          - cell "Edit":
+            - button "Edit"
+          - cell:
+            - button
+        - row "testadmin testadmin testadmin Admin test@test.cz 777888999 Edit":
+          - cell "testadmin"
+          - cell "testadmin"
+          - cell "testadmin"
+          - cell
+          - cell "Admin"
+          - cell "test@test.cz"
+          - cell "777888999"
+          - cell:
+            - checkbox [disabled]
+          - cell "Edit":
+            - button "Edit"
+          - cell:
+            - button
+        - row "admin admin admin Admin admin@comp.com 777888999 Edit":
+          - cell "admin"
+          - cell "admin"
+          - cell "admin"
+          - cell
+          - cell "Admin"
+          - cell "admin@comp.com"
+          - cell "777888999"
+          - cell:
+            - checkbox [disabled]
+          - cell "Edit":
+            - button "Edit"
+          - cell:
+            - button
+        - row "test test test Company BBB Customer test@test.cz 789456123 Edit":
+          - cell "test"
+          - cell "test"
+          - cell "test"
+          - cell "Company BBB"
+          - cell "Customer"
+          - cell "test@test.cz"
+          - cell "789456123"
+          - cell:
+            - checkbox [disabled]
+          - cell "Edit":
+            - button "Edit"
+          - cell:
+            - button
+        - row "testsale testsale testsale Sales Team testsale@test.cz 789456123 Edit":
+          - cell "testsale"
+          - cell "testsale"
+          - cell "testsale"
+          - cell
+          - cell "Sales Team"
+          - cell "testsale@test.cz"
+          - cell "789456123"
+          - cell:
+            - checkbox [disabled]
+          - cell "Edit":
+            - button "Edit"
+          - cell:
+            - button
+      - rowgroup:
+        - row "< 1 >":
+          - cell "< 1 >":
+            - list:
+              - listitem: <
+              - listitem: "1"
+              - listitem: ">"
+    - region "Notifications (F8)":
+      - list
+    - iframe
+    - button "logo icon":
+      - img "logo icon"
+      - img
+    - button`
+  );
 });
 
 // --- After hook to finalize artifacts ---
