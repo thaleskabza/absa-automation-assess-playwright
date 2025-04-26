@@ -46,12 +46,12 @@ Before({ tags: '@webtables' }, async function (scenario) {
   const screenshotBuffer = await this.page.screenshot({ fullPage: true });
   await expect(screenshotBuffer)
     .toMatchSnapshot(path.join(baselineDir, snapName), { maxDiffPixelRatio: 0.01 });
-});
+
 
   // 2) Full-page screenshot vs baseline
-  const baselineDir = path.join('tests', 'smoke-snapshots');
+
   if (!fs.existsSync(baselineDir)) fs.mkdirSync(baselineDir, { recursive: true });
-  const snapName = 'webtables-smoke.png';
+
   const buffer   = await this.page.screenshot({ fullPage: true });
   await expect(buffer)
     .toMatchSnapshot(path.join(baselineDir, snapName), { maxDiffPixelRatio: 0.01 });
