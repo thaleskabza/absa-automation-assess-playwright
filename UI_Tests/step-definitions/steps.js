@@ -32,7 +32,8 @@ Before(async function () {
 // --- Page-level Smoke Hook for @webtables tag ---
 Before({ tags: '@webtables' }, async function (scenario) {
   // 1) Navigate to WebTables
-  await this.webTables.navigate();
+  await this.page.goto('https://www.way2automation.com/angularjs-protractor/webtables/');
+  await saveScreenshot(this.page, 'navigate', this.attach);
   
   // 2) Ensure the app root container is visible
   await this.page.getByRole('columnheader', { name: 'First Name' }).waitFor({ state: 'visible', timeout: 5000 });
