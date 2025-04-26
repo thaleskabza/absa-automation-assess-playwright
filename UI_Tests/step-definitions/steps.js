@@ -48,11 +48,9 @@ Before({ tags: '@webtables' }, async function (scenario) {
 
 // --- After hook to finalize artifacts ---
 After(async function (scenario) {
-  // close page & context to finalize video
+  // fetch and attach video
   await this.page.close();
   await this.context.close();
-
-  // fetch and attach video
   const videoPath = await this.page.video().path();
   if (this.attach) {
     const videoFile = fs.readFileSync(videoPath);
@@ -70,7 +68,7 @@ async function saveScreenshot(page, name, attach) {
 }
 
 // --- Navigation & headers ---
-Given('User navigate to {string}', async function () {
+Given('User navigate to {string}', async function (url) {
   await this.webTables.navigate();
   await saveScreenshot(this.page, 'navigate', this.attach);
 });
@@ -111,7 +109,7 @@ When('User add a user with data:', async function (dataTable) {
   }
 });
 
-Then('User should see the user {string} in the user list with details:', async function (username, dataTable) {
+Then('User should see the user {string} in the user list with details:', async function (username) {
   if (!await this.webTables.isUserPresent(username)) {
     throw new Error(`User not found: ${username}`);
   }
