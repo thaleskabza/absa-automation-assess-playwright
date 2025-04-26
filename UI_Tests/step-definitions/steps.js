@@ -34,7 +34,7 @@ Before({ tags: '@webtables' }, async function (scenario) {
   await this.webTables.navigate();
   
   // 2) Ensure the root container is visible
-  await this.page.locator('#app').waitFor({ state: 'visible', timeout: 5000 });
+  await this.page.locator('thead tr.smart-table-header-row th span.header-content').waitFor({ state: 'visible', timeout: 5000 });
 
   // 3) Capture & compare against baseline
   const baselineDir = path.join('tests', 'smoke-snapshots');
