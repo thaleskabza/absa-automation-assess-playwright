@@ -82,6 +82,8 @@ Then('User should see the user list table with headers:', async function (dataTa
   await saveScreenshot(this.page, 'headers', this.attach);
 });
 
+
+
 // --- Generic click step ---
 When('User click {string}', async function (buttonText) {
   await this.webTables.clickAddUser();
@@ -109,12 +111,13 @@ When('User add a user with data:', async function (dataTable) {
   }
 });
 
-Then('User should see the user {string} in the user list with details:', async function (username) {
+Then('User should see the user {string} in the user list with details:', async function (username, dataTable) {
   if (!await this.webTables.isUserPresent(username)) {
     throw new Error(`User not found: ${username}`);
   }
   await saveScreenshot(this.page, `verify_${username}`, this.attach);
 });
+
 
 // --- CSV-driven user ---
 Given('User load user data from CSV file {string} row {int}', async function (fileName, rowIndex) {
